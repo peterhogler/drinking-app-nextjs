@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Drink } from "../app/RandomDrinkingList";
+import { Drink } from "../components/RandomDrinkingList";
 
 export interface APIResponse {
     drinks: Drink[];
