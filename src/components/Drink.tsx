@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Drink } from "./RandomDrinkingList";
+import { Drink } from "../components/RandomDrinkingList";
 
 interface DrinkProps {
     drinkDetails: Drink;
