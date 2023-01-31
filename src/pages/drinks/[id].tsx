@@ -19,10 +19,10 @@ const Drink = () => {
     return (
         <Layout>
             <div className="flex lg:gap-4">
-                <div>
+                <div className="p-2 border border-slate-700">
                     <SearchBar onDrinkClick={handleDrinkClick} />
                 </div>
-                <div ref={scrollRef} className="h-[1170px] overflow-auto">
+                <div ref={scrollRef} className="h-[1190px] overflow-auto p-2 border-slate-700 border">
                     <DrinkDetails />
                     <RandomDrinkingList onDrinkClick={handleDrinkClick} />
                 </div>

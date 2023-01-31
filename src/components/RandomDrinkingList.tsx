@@ -23,7 +23,7 @@ export interface Drink {
 }
 
 interface DrinkingListProps {
-    onDrinkClick: () => void;
+    onDrinkClick?: () => void;
 }
 
 const DrinkingList: React.FC<DrinkingListProps> = ({ onDrinkClick }) => {
@@ -42,19 +42,19 @@ const DrinkingList: React.FC<DrinkingListProps> = ({ onDrinkClick }) => {
 
     return (
         <div className="w-full">
-            <div className="flex flex-col items-center gap-2 md:flex-row md:justify-between py-6 md:py-2 my-4 md:my-0 font-medium border-y border-slate-700 md:border-y-0">
+            <div className="flex flex-col items-center gap-2 md:flex-row md:justify-between py-4 md:py-2 md:my-0 font-medium  md:border-y-0 ">
                 <div>
                     <h1 className="text-2xl text-white">Random Drink List</h1>
                 </div>
                 <div>
                     <button
-                        className="py-1 px-4 text-teal-300 bg-teal-900 border border-teal-300 rounded-full shadow hover:bg-teal-800 duration-300 ease"
+                        className="py-[3px] px-4 text-teal-300 bg-teal-900 border border-teal-300 rounded-full shadow hover:bg-teal-800 duration-300 ease"
                         onClick={handleRefetchButton}>
                         Refetch Random List
                     </button>
                 </div>
             </div>
-            <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 pt-2 md:h-[1119px]  border-b border-teal-400 md:overflow-auto  grid-auto">
+            <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:h-[1120px]  md:overflow-auto py-2">
                 {drinks.map((drink: Drink) => (
                     <DrinkItem drinkDetails={drink} onDrinkClick={onDrinkClick} />
                 ))}

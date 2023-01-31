@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
     }, [debouncedSearch, data]);
 
     return (
-        <nav className="z-99 lg:h-[65px] py-2 flex items-center flex-wrap lg:border-b border-gray-600 justify-between">
+        <nav className="z-99 lg:h-[65px] py-4 flex items-center flex-wrap  justify-between">
             <div className="text-2xl font-semibold text-teal-300">
                 <Link href="/">Drinks App</Link>
             </div>

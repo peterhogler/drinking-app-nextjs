@@ -3,7 +3,7 @@ import { Drink } from "../components/RandomDrinkingList";
 
 interface DrinkProps {
     drinkDetails: Drink;
-    onDrinkClick: () => void;
+    onDrinkClick?: () => void;
 }
 
 const Drink: React.FC<DrinkProps> = ({ drinkDetails, onDrinkClick }) => {

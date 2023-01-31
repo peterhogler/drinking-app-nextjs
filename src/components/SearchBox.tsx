@@ -6,7 +6,7 @@ import { Drink } from "./RandomDrinkingList";
 import Link from "next/link";
 
 interface SearchBoxProps {
-    onDrinkClick: () => void;
+    onDrinkClick?: () => void;
 }
 
 const SearchBox: React.FC<SearchBoxProps> = ({ onDrinkClick }) => {
@@ -44,11 +44,11 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onDrinkClick }) => {
                         />
                     </div>
                 </form>
-                <div className="mt-5 rounded overflow-hidden">
+                <div className="mt-5 overflow-hidden">
                     {searchDrinks.length === 0 && (
                         <div className="py-4 text-center text-xl font-semibold">No items found</div>
                     )}
-                    <ul className="z-20 text-center max-h-[1075px] overflow-y-auto overflow-x-hidden w-full border border-b-pink-700 border-t-teal-300 border-gray-600 rounded">
+                    <ul className="z-20 text-center max-h-[1075px] overflow-y-auto overflow-x-hidden w-full  border-gray-600 pb-2">
                         {searchDrinks &&
                             searchDrinks.map((drink: Drink) => {
                                 return (
