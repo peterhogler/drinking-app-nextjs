@@ -11,7 +11,6 @@ const Drink = () => {
         if (scrollRef.current) {
             scrollRef.current.scrollTo({
                 top: 0,
-                left: 0,
                 behavior: "smooth",
             });
         }
@@ -19,10 +18,10 @@ const Drink = () => {
     return (
         <Layout>
             <div className="flex lg:gap-4">
-                <div className="p-2 border border-slate-700">
+                <div>
                     <SearchBar onDrinkClick={handleDrinkClick} />
                 </div>
-                <div ref={scrollRef} className="h-[1190px] overflow-auto p-2 border-slate-700 border">
+                <div ref={scrollRef}>
                     <DrinkDetails />
                     <RandomDrinkingList onDrinkClick={handleDrinkClick} />
                 </div>

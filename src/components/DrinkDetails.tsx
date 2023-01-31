@@ -21,7 +21,7 @@ const DrinkDetails: React.FC = () => {
     };
     return (
         <div>
-            <div className="text-2xl pt-3 md:pt-2 pb-2 font-medium border-t border-gray-600 md:border-none text-white">
+            <div className="text-2xl md:pt-3 pb-2 font-medium text-white">
                 Drink <span className="text-pink-600">{drink?.strDrink}</span> ID{" "}
                 <span className="text-teal-300">{drink?.idDrink}</span>
             </div>
@@ -32,7 +32,7 @@ const DrinkDetails: React.FC = () => {
                         src={drink?.strDrinkThumb}
                         alt=""
                     />
-                    <div className="absolute top-5 right-5 ring px-2 py-1">
+                    <div className="absolute top-5 right-5 ring px-2 py-1 bg-black text-white">
                         <button onClick={handleFavoriteButton}>Add to Favorites</button>
                     </div>
                 </div>

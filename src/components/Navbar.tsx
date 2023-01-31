@@ -33,21 +33,14 @@ const Navbar: React.FC = () => {
             <div className="text-2xl font-semibold text-teal-300">
                 <Link href="/">Drinks App</Link>
             </div>
-            {/* <div className="hidden ml-8 lg:flex">
-                <ul className="flex mt-1 gap-6 text-lg font-semibold">
-                    <li className="flex items-center text-white cursor-pointer hover:text-pink-600 duration-300 ease">
-                        <Link href="/random-drinks">Random Drinks</Link>
-                    </li>
-                    <li className="flex items-center text-white cursor-pointer hover:text-teal-300 duration-300 ease">
-                        <Link href="/favorite-drinks">Popular Drinks</Link>
-                    </li>
-                </ul>
-            </div> */}
+            <div className="ml-6 hidden md:block text-lg">
+                <span>Your number #1 - Drinks App</span>
+            </div>
             <div className="ml-auto cursor-pointer flex items-center self-stretch gap-2 text-lg font-semibold text-pink-600">
                 <span className="underline underline-offset-4 ">Favorite Drinks</span>
                 <RiFireFill size={20} />
             </div>
-            <div className="relative w-full flex items-center gap-4">
+            <div className="relative w-full flex items-center gap-4 mt-2 md:mt-0">
                 <div className="flex w-full my-2 lg:hidden items-center gap-2 text-lg">
                     <label className="font-semibold text-white" htmlFor="search">
                         Search

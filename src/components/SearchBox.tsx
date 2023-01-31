@@ -32,10 +32,10 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onDrinkClick }) => {
             <div className="hidden lg:block relative w-[400px] overflow-hidden">
                 <div className="text-2xl py-2 font-medium text-white">Search Drinks</div>
                 <form className="flex flex-col gap-2" onSubmit={(e) => e.preventDefault()}>
-                    <div className="flex gap-2">
+                    <div className="flex items-center gap-2">
                         <label htmlFor="search">Search</label>
                         <input
-                            className="w-full border border-gray-600 bg-gray-200 indent-2 rounded text-black focus:outline-none"
+                            className="w-full border py-[2px] border-gray-600 bg-gray-200 indent-2 rounded text-black focus:outline-none"
                             placeholder="Ex. Vodka"
                             type="text"
                             id="search"
@@ -48,7 +48,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onDrinkClick }) => {
                     {searchDrinks.length === 0 && (
                         <div className="py-4 text-center text-xl font-semibold">No items found</div>
                     )}
-                    <ul className="z-20 text-center max-h-[1075px] overflow-y-auto overflow-x-hidden w-full  border-gray-600 pb-2">
+                    <ul className="z-20 text-center max-h-[1313px] sticky overflow-y-auto overflow-x-hidden w-full  border-gray-600 pb-2">
                         {searchDrinks &&
                             searchDrinks.map((drink: Drink) => {
                                 return (

@@ -4,6 +4,7 @@
 
 @layer base {
     * {
+        scroll-behavior: smooth !important;
         scrollbar-width: thin;
     }
 

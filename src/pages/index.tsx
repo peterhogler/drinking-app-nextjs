@@ -7,10 +7,10 @@ export default function Home() {
         <>
             <Layout>
                 <div className="flex md:gap-4">
-                    <div className="p-2 border border-slate-700">
+                    <div>
                         <SearchBox />
                     </div>
-                    <div className="p-2 border-slate-700 border">
+                    <div>
                         <RandomDrinkingList />
                     </div>
                 </div>

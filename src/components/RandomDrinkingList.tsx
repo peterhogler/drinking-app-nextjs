@@ -42,7 +42,7 @@ const DrinkingList: React.FC<DrinkingListProps> = ({ onDrinkClick }) => {
 
     return (
         <div className="w-full">
-            <div className="flex flex-col items-center gap-2 md:flex-row md:justify-between py-4 md:py-2 md:my-0 font-medium  md:border-y-0 ">
+            <div className="flex flex-col items-center gap-2 md:flex-row md:justify-between py-4 md:py-2  font-medium border-y border-slate-700 my-4 md:my-0 md:border-y-0">
                 <div>
                     <h1 className="text-2xl text-white">Random Drink List</h1>
                 </div>
@@ -54,7 +54,7 @@ const DrinkingList: React.FC<DrinkingListProps> = ({ onDrinkClick }) => {
                     </button>
                 </div>
             </div>
-            <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:h-[1120px]  md:overflow-auto py-2">
+            <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:overflow-auto py-2">
                 {drinks.map((drink: Drink) => (
                     <DrinkItem drinkDetails={drink} onDrinkClick={onDrinkClick} />
                 ))}
