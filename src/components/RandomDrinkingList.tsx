@@ -22,7 +22,11 @@ export interface Drink {
     strMeasure5: string;
 }
 
-const DrinkingList: React.FC = () => {
+interface DrinkingListProps {
+    onDrinkClick: () => void;
+}
+
+const DrinkingList: React.FC<DrinkingListProps> = ({ onDrinkClick }) => {
     const [refetch, setRefetch] = useState(false);
     const { data } = useFetch("https://the-cocktail-db.p.rapidapi.com/randomselection.php", refetch);
     const drinks = data?.drinks || [];
@@ -52,7 +56,7 @@ const DrinkingList: React.FC = () => {
             </div>
             <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 pt-2 md:h-[1119px]  border-b border-teal-400 md:overflow-auto  grid-auto">
                 {drinks.map((drink: Drink) => (
-                    <DrinkItem drinkDetails={drink} />
+                    <DrinkItem drinkDetails={drink} onDrinkClick={onDrinkClick} />
                 ))}
             </ul>
         </div>

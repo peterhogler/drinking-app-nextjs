@@ -5,7 +5,11 @@ import useDebounce from "../hooks/useDebounce";
 import { Drink } from "./RandomDrinkingList";
 import Link from "next/link";
 
-const SearchBox: React.FC = () => {
+interface SearchBoxProps {
+    onDrinkClick: () => void;
+}
+
+const SearchBox: React.FC<SearchBoxProps> = ({ onDrinkClick }) => {
     const [searchQuery, setSearchQuery] = useState<string>("");
     const [searchDrinks, setSearchDrinks] = useState<Drink[] | []>([]);
     const debouncedSearch = useDebounce(searchQuery, 500);
@@ -48,10 +52,14 @@ const SearchBox: React.FC = () => {
                         {searchDrinks &&
                             searchDrinks.map((drink: Drink) => {
                                 return (
-                                    <Link href={`/drinks/${drink.idDrink}`} key={drink.idDrink}>
+                                    <Link
+                                        href={`/drinks/${drink.idDrink}`}
+                                        as={`/drinks/${drink.idDrink}`}
+                                        key={drink.idDrink}>
                                         <li
                                             className="cursor-pointer z-20 flex gap-4 items-center min-w-[277px] border border-transparent hover:border-y  hover:border-teal-300 ease group duration-300 ease"
-                                            key={drink.idDrink}>
+                                            key={drink.idDrink}
+                                            onClick={onDrinkClick}>
                                             <div className="h-20 w-20 grayscale-[25%] hover:grayscale-0 duration-300 ease">
                                                 <img
                                                     src={drink.strDrinkThumb}
