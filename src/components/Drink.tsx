@@ -18,6 +18,7 @@ const Drink: React.FC<DrinkProps> = ({ drinkDetails, onDrinkClick }) => {
                         className="grayscale-[25%] group-hover:grayscale-0 duration-300 group-hover:scale-110"
                         src={drinkDetails.strDrinkThumb}
                         alt={drinkDetails.strDrink}
+                        loading="lazy"
                     />
                 </div>
                 <div className="p-2 h-max">

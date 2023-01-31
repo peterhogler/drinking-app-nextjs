@@ -30,7 +30,8 @@ const DrinkDetails: React.FC = () => {
                     <img
                         className="w-full h-[536px] object-cover border-[1.5px] border-gray-600 rounded"
                         src={drink?.strDrinkThumb}
-                        alt=""
+                        alt={`Image of ${drink?.strDrink}`}
+                        loading="lazy"
                     />
                     <div className="absolute top-5 right-5 ring px-2 py-1 bg-black text-white">
                         <button onClick={handleFavoriteButton}>Add to Favorites</button>
