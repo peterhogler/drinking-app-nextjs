@@ -13,11 +13,11 @@ const FavoriteDrinkingList: React.FC = () => {
     };
     return (
         <div className="h-[100vh] w-full">
-            <div className="flex flex-col gap-2 md:flex-row md:justify-between py-4 md:py-2  font-medium border-y border-slate-700 my-4 md:my-0 md:border-y-0">
+            <div className="flex flex-col gap-2 md:flex-row items-center md:justify-between py-4 md:py-2  font-medium border-y border-slate-700 my-4 md:my-0 md:border-y-0">
                 <div>
                     <h1 className="text-2xl text-white">Favorite Drinks</h1>
                 </div>
-                <div className="ml-auto">
+                <div className=" md:ml-auto">
                     <button
                         className="py-[3px] px-4 text-pink-600 bg-pink-900/25 border border-pink-600 rounded-full shadow  hover:bg-pink-900/50 duration-300 ease"
                         onClick={handleClearButton}>
