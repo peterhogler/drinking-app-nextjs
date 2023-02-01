@@ -19,7 +19,9 @@ const DrinkDetails: React.FC = () => {
 
     const favoriteDrinks = useSelector((state: RootState) => state.drinks);
     const existingDrink = favoriteDrinks.find((favoriteDrink) => favoriteDrink.idDrink === drink?.idDrink);
-    const iconColor = existingDrink ? "text-yellow-400" : "text-slate-400";
+    const iconColor = existingDrink
+        ? "text-yellow-500"
+        : "text-slate-600 hover:text-yellow-500 duration-300 ease";
 
     const handleFavoriteButton = () => {
         if (drink) {

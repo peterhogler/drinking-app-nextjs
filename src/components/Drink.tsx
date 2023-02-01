@@ -16,7 +16,9 @@ const Drink: React.FC<DrinkProps> = ({ drinkDetails, onDrinkClick }) => {
         (favoriteDrink) => favoriteDrink.idDrink === drinkDetails.idDrink
     );
 
-    const iconColor = existingDrink ? "text-yellow-400" : "text-slate-400";
+    const iconColor = existingDrink
+        ? "text-yellow-500"
+        : "text-slate-600 hover:text-yellow-500 duration-300 ease";
 
     const dispatch = useDispatch();
 
@@ -37,7 +39,9 @@ const Drink: React.FC<DrinkProps> = ({ drinkDetails, onDrinkClick }) => {
                         loading="lazy"
                     />
                 </Link>
-                <div className="grid place-items-center absolute top-5 right-5 h-10 w-10 bg-slate-900 rounded-full">
+                <div
+                    className="grid place-items-center absolute top-5 right-5 h-10 w-10 bg-slate-900 rounded-full"
+                    onClick={onDrinkClick}>
                     <button onClick={handleFavoriteButton}>
                         <BiDrink className={iconColor} size={26} />
                     </button>

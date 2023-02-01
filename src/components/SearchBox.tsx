@@ -66,7 +66,9 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onDrinkClick }) => {
                                 const existingDrink = favoriteDrinks.find(
                                     (favoriteDrink: Drink) => favoriteDrink.idDrink === drink.idDrink
                                 );
-                                const iconColor = existingDrink ? "text-yellow-500" : "text-slate-600";
+                                const iconColor = existingDrink
+                                    ? "text-yellow-500"
+                                    : "text-slate-600 hover:text-yellow-500 duration-300 ease";
                                 return (
                                     <Link href={`/drinks/${drink.idDrink}`}>
                                         <li
@@ -88,7 +90,9 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onDrinkClick }) => {
                                                     {drink.strAlcoholic}
                                                 </div>
                                             </div>
-                                            <div className="grid  place-items-center self-stretch p-5">
+                                            <div
+                                                className="grid  place-items-center self-stretch p-5 z-50"
+                                                onClick={onDrinkClick}>
                                                 <button onClick={() => handleFavoriteButton(drink)}>
                                                     <BiDrink className={iconColor} size={28} />
                                                 </button>
