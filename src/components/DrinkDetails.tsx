@@ -1,9 +1,12 @@
 "use client";
+
+import { BiDrink } from "react-icons/bi";
 import useFetch from "../hooks/useFetch";
 import { usePathname } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { ADD_DRINK } from "@/redux/drinksSlice";
-import { Drink } from "./RandomDrinkingList";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 const DrinkDetails: React.FC = () => {
     const pathname = usePathname();
@@ -13,6 +16,10 @@ const DrinkDetails: React.FC = () => {
 
     const { data } = useFetch(`https://the-cocktail-db.p.rapidapi.com/lookup.php?i=${id}`);
     const drink = data?.drinks[0];
+
+    const favoriteDrinks = useSelector((state: RootState) => state.drinks);
+    const existingDrink = favoriteDrinks.find((favoriteDrink) => favoriteDrink.idDrink === drink?.idDrink);
+    const iconColor = existingDrink ? "text-yellow-400" : "text-slate-400";
 
     const handleFavoriteButton = () => {
         if (drink) {
@@ -33,8 +40,10 @@ const DrinkDetails: React.FC = () => {
                         alt={`Image of ${drink?.strDrink}`}
                         loading="lazy"
                     />
-                    <div className="absolute top-5 right-5 ring px-2 py-1 bg-black text-white">
-                        <button onClick={handleFavoriteButton}>Add to Favorites</button>
+                    <div className="grid place-items-center absolute top-5 right-5 h-10 w-10 bg-slate-900 rounded-full">
+                        <button onClick={handleFavoriteButton}>
+                            <BiDrink className={iconColor} size={26} />
+                        </button>
                     </div>
                 </div>
                 <div className="lg:px-2 pb-2 h-max">

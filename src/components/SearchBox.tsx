@@ -4,6 +4,10 @@ import useFetch from "../hooks/useFetch";
 import useDebounce from "../hooks/useDebounce";
 import { Drink } from "./RandomDrinkingList";
 import Link from "next/link";
+import { BiDrink } from "react-icons/bi";
+import { ADD_DRINK } from "@/redux/drinksSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "@/redux/store";
 
 interface SearchBoxProps {
     onDrinkClick?: () => void;
@@ -15,9 +19,9 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onDrinkClick }) => {
     const debouncedSearch = useDebounce(searchQuery, 500);
     const { data } = useFetch(`https://the-cocktail-db.p.rapidapi.com/search.php?s=${debouncedSearch}`);
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchQuery(e.target.value);
-    };
+    const dispatch = useDispatch();
+
+    const favoriteDrinks = useSelector((state: RootState) => state.drinks);
 
     useEffect(() => {
         if (debouncedSearch.length < 2) {
@@ -26,6 +30,14 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onDrinkClick }) => {
             setSearchDrinks(data?.drinks || []);
         }
     }, [debouncedSearch, data]);
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchQuery(e.target.value);
+    };
+
+    const handleFavoriteButton = (drink: Drink) => {
+        dispatch(ADD_DRINK(drink));
+    };
 
     return (
         <>
@@ -51,11 +63,12 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onDrinkClick }) => {
                     <ul className="z-20 text-center max-h-[1313px] sticky overflow-y-auto overflow-x-hidden w-full  border-gray-600 pb-2">
                         {searchDrinks &&
                             searchDrinks.map((drink: Drink) => {
+                                const existingDrink = favoriteDrinks.find(
+                                    (favoriteDrink: Drink) => favoriteDrink.idDrink === drink.idDrink
+                                );
+                                const iconColor = existingDrink ? "text-yellow-500" : "text-slate-600";
                                 return (
-                                    <Link
-                                        href={`/drinks/${drink.idDrink}`}
-                                        as={`/drinks/${drink.idDrink}`}
-                                        key={drink.idDrink}>
+                                    <Link href={`/drinks/${drink.idDrink}`}>
                                         <li
                                             className="cursor-pointer z-20 flex gap-4 items-center min-w-[277px] border border-transparent hover:border-y  hover:border-teal-300 ease group duration-300 ease"
                                             key={drink.idDrink}
@@ -74,6 +87,11 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onDrinkClick }) => {
                                                 <div className="px-2 py-1 bg-slate-800 w-max">
                                                     {drink.strAlcoholic}
                                                 </div>
+                                            </div>
+                                            <div className="grid  place-items-center self-stretch p-5">
+                                                <button onClick={() => handleFavoriteButton(drink)}>
+                                                    <BiDrink className={iconColor} size={28} />
+                                                </button>
                                             </div>
                                         </li>
                                     </Link>

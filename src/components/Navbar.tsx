@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { RiFireFill } from "react-icons/ri";
-import useFetch from "../hooks/useFetch"; // import the useFetch hook here
+import { BiDrink } from "react-icons/bi";
+import useFetch from "../hooks/useFetch";
 import useDebounce from "../hooks/useDebounce";
 import { Drink } from "./RandomDrinkingList";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 import Link from "next/link";
 
 const Navbar: React.FC = () => {
@@ -13,6 +15,8 @@ const Navbar: React.FC = () => {
 
     const debouncedSearch = useDebounce(searchQuery, 500);
     const { data } = useFetch(`https://the-cocktail-db.p.rapidapi.com/search.php?s=${debouncedSearch}`);
+
+    const favoriteDrinks = useSelector((state: RootState) => state.drinks);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(e.target.value);
@@ -30,16 +34,27 @@ const Navbar: React.FC = () => {
 
     return (
         <nav className="z-99 lg:h-[65px] py-4 flex items-center flex-wrap  justify-between">
-            <div className="text-2xl font-semibold text-teal-300">
+            <div className="flex items-center gap-2 text-2xl font-semibold text-teal-300">
                 <Link href="/">Drinks App</Link>
+                <BiDrink className="text-teal-300" size={22} />
             </div>
             <div className="ml-6 hidden md:block text-lg">
                 <span>Your number #1 - Drinks App</span>
             </div>
-            <div className="ml-auto cursor-pointer flex items-center self-stretch gap-2 text-lg font-semibold text-pink-600">
-                <span className="underline underline-offset-4 ">Favorite Drinks</span>
-                <RiFireFill size={20} />
-            </div>
+            <Link
+                href="../favorites"
+                className="ml-auto cursor-pointer flex items-center self-stretch gap-2 text-lg font-semibold ">
+                <span className="flex items-center gap-2 underline underline-offset-4 text-pink-600">
+                    Favorite Drinks{" "}
+                    {favoriteDrinks.length <= 0 && <BiDrink className="text-teal-300" size={22} />}
+                </span>
+                {favoriteDrinks.length > 0 && (
+                    <>
+                        <span>[{favoriteDrinks && favoriteDrinks.length > 0 && favoriteDrinks.length}]</span>
+                        <BiDrink className="text-teal-300" size={22} />
+                    </>
+                )}
+            </Link>
             <div className="relative w-full flex items-center gap-4 mt-2 md:mt-0">
                 <div className="flex w-full my-2 lg:hidden items-center gap-2 text-lg">
                     <label className="font-semibold text-white" htmlFor="search">

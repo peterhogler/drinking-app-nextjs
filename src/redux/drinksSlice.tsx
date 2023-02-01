@@ -15,10 +15,22 @@ export const drinkSlice = createSlice({
     initialState,
     reducers: {
         ADD_DRINK: (state, action: PayloadAction<Drink>) => {
-            console.log(action.payload);
+            const existingDrink = state.drinks.find(
+                (favoriteDrink) => favoriteDrink.idDrink === action.payload.idDrink
+            );
+            if (!existingDrink) {
+                state.drinks = [...state.drinks, action.payload];
+            } else {
+                state.drinks = state.drinks.filter(
+                    (favoriteDrinks) => favoriteDrinks.idDrink !== action.payload.idDrink
+                );
+            }
+        },
+        REMOVE_DRINKS: (state) => {
+            state.drinks = [];
         },
     },
 });
 
-export const { ADD_DRINK } = drinkSlice.actions;
+export const { ADD_DRINK, REMOVE_DRINKS } = drinkSlice.actions;
 export default drinkSlice.reducer;
